@@ -1,0 +1,22 @@
+{
+    "Programming for AI": {
+        "Grade": 85,
+        "Attendance": 95
+    },
+    "Cybersecurity": {
+        "Grade": 78,
+        "Attendance": 80
+    },
+    "Network Recon": {
+        "Grade": 92,
+        "Attendance": 98
+    },
+    "Data Ethics": {
+        "Grade": 74,
+        "Attendance": 70
+    },
+    "Web Security": {
+        "Grade": 88,
+        "Attendance": 90
+    }
+}

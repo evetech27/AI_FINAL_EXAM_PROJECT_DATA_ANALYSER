@@ -1,0 +1,99 @@
+import matplotlib.pyplot as plt
+
+# 1. Defining the Data
+# Using a dictionary to map subjects to their respective average scores
+school_data = {
+    "Programming for AI": 85,
+    "Cybersecurity": 78,
+    "Network Recon": 92,
+    "Data Ethics": 74,
+    "Web Security": 88
+}
+
+# 2. Extracting data for the plot
+subjects = list(school_data.keys())
+scores = list(school_data.values())
+
+# 3. Creating the Visualization
+plt.figure(figsize=(10, 6))
+plt.bar(subjects, scores, color='skyblue', edgecolor='navy')
+
+# Adding labels and title
+plt.xlabel('Academic Units', fontsize=12)
+plt.ylabel('Average Score (%)', fontsize=12)
+plt.title('Performance Analysis Across School Units', fontsize=14)
+plt.ylim(0, 100)  # Setting the limit from 0 to 100%
+
+# 4. Displaying the Result
+plt.show()
+# Expanded dataset
+school_stats = {
+    "Programming for AI": {"Grade": 85, "Attendance": 95},
+    "Cybersecurity": {"Grade": 78, "Attendance": 80},
+    "Network Recon": {"Grade": 92, "Attendance": 98},
+    "Data Ethics": {"Grade": 74, "Attendance": 70},
+    "Web Security": {"Grade": 88, "Attendance": 90}
+}
+
+subjects = list(school_stats.keys())
+grades = [data["Grade"] for data in school_stats.values()]
+attendance = [data["Attendance"] for data in school_stats.values()]
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(len(subjects))  # Label locations
+width = 0.35  # Width of the bars
+
+fig, ax = plt.subplots(figsize=(10, 6))
+rects1 = ax.bar(x - width/2, grades, width, label='Avg Grade (%)', color='#4A90E2')
+rects2 = ax.bar(x + width/2, attendance, width, label='Avg Attendance (%)', color='#50C878')
+
+# Add text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Percentage')
+ax.set_title('Correlation: Grades vs. Attendance')
+ax.set_xticks(x)
+ax.set_xticklabels(subjects)
+ax.legend()
+
+plt.show()
+import json
+
+# The Dataset
+school_stats = {
+    "Programming for AI": {"Grade": 85, "Attendance": 95},
+    "Cybersecurity": {"Grade": 78, "Attendance": 80},
+    "Network Recon": {"Grade": 92, "Attendance": 98},
+    "Data Ethics": {"Grade": 74, "Attendance": 70},
+    "Web Security": {"Grade": 88, "Attendance": 90}
+}
+
+# --- FILE HANDLING ---
+def save_data(data, filename="school_data.json"):
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=4)
+    print(f"Successfully saved data to {filename}")
+
+def load_data(filename="school_data.json"):
+    try:
+        with open(filename, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("No existing data file found.")
+        return None
+
+# --- ANALYSIS LOGIC ---
+def analyze_risk(data):
+    print("\n--- AI Risk Analysis Report ---")
+    for subject, metrics in data.items():
+        # Logic: Flag if attendance < 75% or Grade < 75%
+        if metrics["Attendance"] < 75 or metrics["Grade"] < 75:
+            status = "⚠️ AT RISK"
+        else:
+            status = "✅ STABLE"
+        
+        print(f"{subject}: {status} (Att: {metrics['Attendance']}%, Grade: {metrics['Grade']}%)")
+
+# Execute the workflow
+save_data(school_stats)
+loaded_stats = load_data()
+analyze_risk(loaded_stats)
